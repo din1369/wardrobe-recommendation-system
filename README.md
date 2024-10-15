@@ -10,9 +10,6 @@
 * JUnit 5 is used for unit testing.
 * Mockito is used for mocking.
 
-### Refer proposed architecture and ERD
-![Architecture Diagram.png](Architecture%20Diagram.png)
-
 ### Pre-requisites to run the application with Docker
 1. Docker & Docker Compose installed (I used Docker Desktop for Windows)
 2. Java 21
