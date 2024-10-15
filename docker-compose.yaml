@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=recommendation_db'
+      - 'MYSQL_ROOT_PASSWORD=root'
+    ports:
+      - '3307:3306'
+#    volumes: # Uncomment this if you want to persist data
+#      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "8090"
+    ports:
+      - "8090:8090"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    environment:
+      - 'SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/recommendation_db'
+      - 'SPRING_DATASOURCE_USERNAME=root'
+      - 'SPRING_DATASOURCE_PASSWORD=root'
