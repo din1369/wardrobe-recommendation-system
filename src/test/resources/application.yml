@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: user-experience-service
+
+server:
+  port: 8090
+
+app:
+  purchase-history:
+      limit: 100
+      category-limit: 5
+  max-recommend-count: 100
